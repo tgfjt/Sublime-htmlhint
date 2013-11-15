@@ -25,5 +25,4 @@ class HtmlhintCommand(sublime_plugin.TextCommand):
         elif sublime.platform() == "osx":
             args['path'] = "/usr/local/share/npm/bin:/usr/local/bin:/opt/local/bin:$HOME/.nodebrew/current/bin:$PATH"
 
-        self.view.window().show_quick_panel(args)
         self.view.window().run_command('exec', args)
