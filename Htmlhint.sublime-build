@@ -1,0 +1,7 @@
+{
+  "selector": "source.html",
+
+  "cmd": ["HTMLHint/bin/htmlhint", "$file", "-f", "nocolor"],
+
+  "path": "/usr/local/share/npm/bin:/usr/local/bin:/opt/local/bin:$HOME/.nodebrew/current/bin:$PATH"
+}
