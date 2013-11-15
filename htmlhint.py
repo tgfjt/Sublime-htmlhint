@@ -6,12 +6,17 @@ class HtmlhintCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         filepath = self.view.file_name()
         packages = sublime.packages_path()
+        pluginpath = packages + "/Sublime-htmlhint"
+        htmlhintpath = pluginpath + "/HTMLHint"
+
         args = {
             "cmd": [
-                "HTMLHint/bin/htmlhint",
+                htmlhintpath + "/bin/htmlhint",
                 filepath,
                 "-f",
-                "nocolor"
+                "nocolor",
+                "-c",
+                pluginpath + "/.htmlhintrc"
             ]
         }
 
@@ -20,4 +25,5 @@ class HtmlhintCommand(sublime_plugin.TextCommand):
         elif sublime.platform() == "osx":
             args['path'] = "/usr/local/share/npm/bin:/usr/local/bin:/opt/local/bin:$HOME/.nodebrew/current/bin:$PATH"
 
+        self.view.window().show_quick_panel(args)
         self.view.window().run_command('exec', args)

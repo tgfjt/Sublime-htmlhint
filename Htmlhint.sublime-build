@@ -1,7 +1,7 @@
 {
   "selector": "source.html",
 
-  "cmd": ["HTMLHint/bin/htmlhint", "$file", "-f", "nocolor"],
+  "cmd": ["$packages/Sublime-htmlhint/HTMLHint/bin/htmlhint", "$file", "-f", "nocolor", "-c", "$packages/Sublime-htmlhint/.htmlhintrc"],
 
   "path": "/usr/local/share/npm/bin:/usr/local/bin:/opt/local/bin:$HOME/.nodebrew/current/bin:$PATH"
 }
