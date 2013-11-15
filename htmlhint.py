@@ -1,6 +1,7 @@
 import os, sublime, sublime_plugin
 
-package = "Htmlhint"
+package = "Sublime-htmlhint"
+SETTINGS_FILE = package + ".sublime-settings"
 
 class HtmlhintCommand(sublime_plugin.TextCommand):
     def run(self, edit):
@@ -9,6 +10,13 @@ class HtmlhintCommand(sublime_plugin.TextCommand):
         pluginpath = packages + "/Sublime-htmlhint"
         htmlhintpath = pluginpath + "/HTMLHint"
 
+        settings = sublime.load_settings(SETTINGS_FILE)
+
+        htmlhintrc = settings.get("htmlhintrc")[0]
+
+        if htmlhintrc == None:
+            htmlhintrc = htmlhintpath + ".htmlhintrc"
+
         args = {
             "cmd": [
                 htmlhintpath + "/bin/htmlhint",
@@ -16,9 +24,10 @@ class HtmlhintCommand(sublime_plugin.TextCommand):
                 "-f",
                 "nocolor",
                 "-c",
-                pluginpath + "/.htmlhintrc"
+                htmlhintrc
             ]
         }
+        
 
         if sublime.platform() == "windows":
             args['cmd'][0] += ".cmd"

@@ -1,10 +1,89 @@
-[{
-  "caption": "Tools",
-  "mnemonic": "t",
-  "id": "tools",
-  "children": [{
-    "id": "htmlhint",
-    "caption": "Htmlhint",
-    "command": "htmlhint"
-  }]
-}]
+[
+    {
+        "caption": "Preferences", 
+        "children": [
+            {
+                "caption": "Package Settings", 
+                "children": [
+                    {
+                        "caption": "Sublime-htmlhint", 
+                        "children": [
+                            {
+                                "args": {
+                                    "file": "${packages}/Sublime-htmlhint/Sublime-htmlhint.sublime-settings"
+                                }, 
+                                "caption": "Settings – Default", 
+                                "command": "open_file"
+                            }, 
+                            {
+                                "args": {
+                                    "file": "${packages}/User/Sublime-htmlhint.sublime-settings"
+                                }, 
+                                "caption": "Settings – User", 
+                                "command": "open_file"
+                            }, 
+                            {
+                                "caption": "-"
+                            }, 
+                            {
+                                "args": {
+                                    "file": "${packages}/Sublime-htmlhint/Default (Windows).sublime-keymap", 
+                                    "platform": "Windows"
+                                }, 
+                                "caption": "Key Bindings – Default", 
+                                "command": "open_file"
+                            }, 
+                            {
+                                "args": {
+                                    "file": "${packages}/Sublime-htmlhint/Default (OSX).sublime-keymap", 
+                                    "platform": "OSX"
+                                }, 
+                                "caption": "Key Bindings – Default", 
+                                "command": "open_file"
+                            }, 
+                            {
+                                "args": {
+                                    "file": "${packages}/Sublime-htmlhint/Default (Linux).sublime-keymap", 
+                                    "platform": "Linux"
+                                }, 
+                                "caption": "Key Bindings – Default", 
+                                "command": "open_file"
+                            }, 
+                            {
+                                "args": {
+                                    "file": "${packages}/User/Default (Windows).sublime-keymap", 
+                                    "platform": "Windows"
+                                }, 
+                                "caption": "Key Bindings – User", 
+                                "command": "open_file"
+                            }, 
+                            {
+                                "args": {
+                                    "file": "${packages}/User/Default (OSX).sublime-keymap", 
+                                    "platform": "OSX"
+                                }, 
+                                "caption": "Key Bindings – User", 
+                                "command": "open_file"
+                            }, 
+                            {
+                                "args": {
+                                    "file": "${packages}/User/Default (Linux).sublime-keymap", 
+                                    "platform": "Linux"
+                                }, 
+                                "caption": "Key Bindings – User", 
+                                "command": "open_file"
+                            }, 
+                            {
+                                "caption": "-"
+                            }
+                        ]
+                    }
+                ], 
+                "id": "package-settings", 
+                "mnemonic": "P"
+            }
+        ], 
+        "id": "preferences", 
+        "mnemonic": "n"
+    }
+]
