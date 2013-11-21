@@ -70,7 +70,7 @@ class HtmlhintCommand(sublime_plugin.TextCommand):
             sublime.DRAW_SQUIGGLY_UNDERLINE |
             sublime.HIDE_ON_MINIMAP)
         else:
-          icon = '..' + PACKAGE + '/icon/warn'
+          icon = '../' + PACKAGE + '/icon/warn'
           view.add_regions(HTMLHINT_ERROR, regions, 'keyword', icon,
             sublime.DRAW_EMPTY |
             sublime.DRAW_OUTLINED |
