@@ -21,9 +21,9 @@ Ex.
 
 ## Usage
 
-** Htmlhint **
+**Htmlhint**
 
-`Htmlhint`コマンドを実行する
+run `Htmlhint` on HTML file
 
 * `Ctrl+Shift+J` on OS X
 * `Alt+Shift+J` on Win, Linux
