@@ -1,5 +1,6 @@
 {
-	"htmlhintrc":[
-		".htmlhintrc"
-	]
+	// Default, use current directory
+	"htmlhintrc": ".htmlhintrc",
+	// without specifying a path of 'node', this path probably work.
+	"node_path": "/usr/local/bin/node"
 }

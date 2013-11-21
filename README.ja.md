@@ -6,9 +6,8 @@ htmlhint plugin for Sublime Text
 
 **NOTE:**
 
-* This is beta now
-* I don't check on Windows, Linux
-* take care version of htmlhint
+* Linux, Windowsで試してない
+* Htmlhintがfork版
 
 ## Getting Started
 
@@ -19,6 +18,7 @@ Ex.
 * ST2 `~/Library/Application Support/Sublime Text 2/Packages/`
 * ST3 `~/Library/Application Support/Sublime Text 3/Packages/`
 
+
 ## Usage
 
 ** Htmlhint **
@@ -28,19 +28,19 @@ Ex.
 * `Ctrl+Shift+J` on OS X
 * `Alt+Shift+J` on Win, Linux
 
-### Settings
+### 設定変更
 
 `Preferences > Package Settings > Sublime-htmlhint > Setting - User`
 
-* .htmlhintrc path
-* 
+* .htmlhintrcのパス
+
 ```
 {
 	"htmlhintrc": "/path/to/your/.htmlhintrc"
 }
 ```
 
-* node path
+* nodeのパス
 
 Ex: `/usr/local/bin/node`, `/Users/NAME/.nodebrew/current/bin/node`
 

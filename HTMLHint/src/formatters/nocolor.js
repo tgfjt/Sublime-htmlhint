@@ -6,7 +6,8 @@ module.exports = {
         var output = [];
         output.push(filename + ':\n');
         results.forEach(function (result) {
-            output.push(util.format('\tline %d, col %d: %s\n', result.line, result.col, result.message));
+            // output.push(util.format([result.line, result.col, result.message].join(", ")));
+            output.push(util.format('%d:: %d:: %s\n', result.line, result.col, result.message));
         });
         output.push('\n');
         return output.join('');

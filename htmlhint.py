@@ -1,37 +1,96 @@
 import os, sublime, sublime_plugin
+import subprocess
 
-package = "Sublime-htmlhint"
-SETTINGS_FILE = package + ".sublime-settings"
+try:
+    import commands
+except ImportError:
+    pass
+
+PACKAGE = 'Sublime-htmlhint'
+SETTINGS_FILE = PACKAGE + '.sublime-settings'
+HTMLHINTRC = '/.htmlhintrc'
+HTMLHINT_ERROR = 'htmlhint_errors'
 
 class HtmlhintCommand(sublime_plugin.TextCommand):
-    def run(self, edit):
-        filepath = self.view.file_name()
-        packages = sublime.packages_path()
-        pluginpath = packages + "/Sublime-htmlhint"
-        htmlhintpath = pluginpath + "/HTMLHint"
+    def run(self, edit, show_regions=True, show_panel=True):
+        view = self.view
+        view.erase_regions(HTMLHINT_ERROR)
+        filepath = view.file_name()
+        packagespath = sublime.packages_path()
+        pluginpath = packagespath + '/' + PACKAGE
+        htmlhintpath = pluginpath + '/HTMLHint'
 
         settings = sublime.load_settings(SETTINGS_FILE)
 
-        htmlhintrc = settings.get("htmlhintrc")[0]
+        htmlhintrc = settings.get('htmlhintrc')
 
         if htmlhintrc == None:
-            htmlhintrc = htmlhintpath + ".htmlhintrc"
+            htmlhintrc = htmlhintpath + HTMLHINTRC
 
-        args = {
-            "cmd": [
-                htmlhintpath + "/bin/htmlhint",
-                filepath,
-                "-f",
-                "nocolor",
-                "-c",
-                htmlhintrc
-            ]
-        }
-        
+        nodepath = settings.get('node_path')
 
-        if sublime.platform() == "windows":
-            args['cmd'][0] += ".cmd"
-        elif sublime.platform() == "osx":
-            args['path'] = "/usr/local/share/npm/bin:/usr/local/bin:/opt/local/bin:$HOME/.nodebrew/current/bin:$PATH"
+        cmd = [nodepath, htmlhintpath + '/bin/htmlhint', filepath, '-f', 'sublime', '-c', htmlhintrc]
 
-        self.view.window().run_command('exec', args)
+        output = get_output(cmd)
+
+        regions = []
+        menuitems = []
+
+        for line in output.decode().splitlines():
+            try:
+                lineNo, columnNo, description = line.split(':: ')
+                text_point = view.text_point(int(lineNo) - 1, int(columnNo))
+                region = view.word(text_point)
+                menuitems.append('L' + lineNo + ':C' + columnNo + ' ' + description)
+                regions.append(region)
+            except:
+                pass
+
+        self.add_regions(regions)
+        self.view.window().show_quick_panel(menuitems, self.on_chosen)
+
+    def on_chosen(self, index):
+        if index == -1:
+          return
+
+        region = self.view.get_regions(HTMLHINT_ERROR)[index]
+        selection = self.view.sel()
+        selection.clear()
+        selection.add(region)
+        self.view.show(region)
+
+    def add_regions(self, regions):
+        view = self.view
+        if int(sublime.version()) >= 3000:
+          icon = 'Packages/' + PACKAGE + '/icon/warn.png'
+          view.add_regions(HTMLHINT_ERROR, regions, 'keyword', icon,
+            sublime.DRAW_EMPTY |
+            sublime.DRAW_NO_FILL |
+            sublime.DRAW_NO_OUTLINE |
+            sublime.DRAW_SQUIGGLY_UNDERLINE |
+            sublime.HIDE_ON_MINIMAP)
+        else:
+          icon = '..' + 'Packages/' + PACKAGE + '/warn'
+          view.add_regions(HTMLHINT_ERROR, regions, 'keyword', icon,
+            sublime.DRAW_EMPTY |
+            sublime.DRAW_OUTLINED |
+            sublime.HIDE_ON_MINIMAP)
+
+def get_output(cmd):
+    if int(sublime.version()) < 3000:
+        if sublime.platform() != 'windows':
+            # Linux and OSX(Python2
+            run = '"' + '" "'.join(cmd) + '"'
+            return commands.getoutput(run)
+        else:
+            # Windows(Python2
+
+            # http://stackoverflow.com/questions/1813872/running-a-process-in-pythonw-with-popen-without-a-console
+            startupinfo = subprocess.STARTUPINFO()
+            startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+
+            return subprocess.Popen(cmd, stdout=subprocess.PIPE, startupinfo=startupinfo).communicate()[0]
+    else:
+        # Python3
+        return subprocess.check_output(cmd, stderr=subprocess.PIPE)
+
