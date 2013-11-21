@@ -21,7 +21,7 @@ Ex.
 
 ## Usage
 
-** Htmlhint **
+**Htmlhint**
 
 `Htmlhint`コマンドを実行する
 
