@@ -3,23 +3,29 @@ Sublime-htmlhint
 
 htmlhint plugin for Sublime Text
 
+**via Node.js**
 
-**NOTE:**
+* node.jsを経由します。
+* nodeのパス設定が必要な場合は[設定](#%E8%A8%AD%E5%AE%9A%E5%A4%89%E6%9B%B4)してください。
+
+[README for Japanese](/tgfjt/Sublime-htmlhint/blob/master/README.ja.md)
+
+**DEV NOTE:**
 
 * Linux, Windowsで試してない
 * Htmlhintがfork版
 
-## Getting Started
+## 始め方
 
-clone this repo to your SublimeText "Packages" directory
+お使いの SublimeText "Packages" ディレクトリに `git clone`してください。
 
-Ex.
+例.
 
 * ST2 `~/Library/Application Support/Sublime Text 2/Packages/`
 * ST3 `~/Library/Application Support/Sublime Text 3/Packages/`
 
 
-## Usage
+## 使い方
 
 **Htmlhint**
 
@@ -32,6 +38,7 @@ Ex.
 
 `Preferences > Package Settings > Sublime-htmlhint > Setting - User`
 
+
 * .htmlhintrcのパス
 
 ```
@@ -42,10 +49,24 @@ Ex.
 
 * nodeのパス
 
-Ex: `/usr/local/bin/node`, `/Users/NAME/.nodebrew/current/bin/node`
+例:
+
+ `/usr/local/bin/node`, `/Users/NAME/.nodebrew/current/bin/node`
 
 ```
 {
 	"node_path": "/path/to/your/usr/node"
 }
+```
+
+* ショートカットキー
+
+`Preferences > Package Settings > Sublime-htmlhint > Key Bindings - User`
+
+OSXでの初期設定は、`shift+ctrl+j`
+
+```
+[{
+  "keys": ["shift+ctrl+j"], "command": "htmlhint"
+}]
 ```

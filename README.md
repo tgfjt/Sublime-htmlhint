@@ -3,8 +3,14 @@ Sublime-htmlhint
 
 htmlhint plugin for Sublime Text
 
+[README for Japanese](/tgfjt/Sublime-htmlhint/blob/master/README.ja.md)
 
-**NOTE:**
+**via Node.js**
+
+* Be sure your `Node.js` is installed.
+* If you need, please [Set](#settings) your Node Path.
+
+**DEV NOTE:**
 
 * This is beta now
 * I don't check on Windows, Linux
@@ -32,8 +38,9 @@ run `Htmlhint` on HTML file
 
 `Preferences > Package Settings > Sublime-htmlhint > Setting - User`
 
+
 * .htmlhintrc path
-* 
+ 
 ```
 {
 	"htmlhintrc": "/path/to/your/.htmlhintrc"
@@ -42,7 +49,9 @@ run `Htmlhint` on HTML file
 
 * node path
 
-Ex: `/usr/local/bin/node`, `/Users/NAME/.nodebrew/current/bin/node`
+Ex:
+
+ `/usr/local/bin/node`, `/Users/NAME/.nodebrew/current/bin/node`
 
 ```
 {
