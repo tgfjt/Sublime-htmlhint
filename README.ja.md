@@ -8,8 +8,6 @@ htmlhint plugin for Sublime Text
 * node.jsを経由します。
 * nodeのパス設定が必要な場合は[設定](#%E8%A8%AD%E5%AE%9A%E5%A4%89%E6%9B%B4)してください。
 
-[README for Japanese](/tgfjt/Sublime-htmlhint/blob/master/README.ja.md)
-
 **DEV NOTE:**
 
 * Linux, Windowsで試してない

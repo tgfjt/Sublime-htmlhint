@@ -3,7 +3,7 @@ Sublime-htmlhint
 
 htmlhint plugin for Sublime Text
 
-[README for Japanese](/tgfjt/Sublime-htmlhint/blob/master/README.ja.md)
+[README for Japanese](https://github.com/tgfjt/Sublime-htmlhint/blob/master/README.ja.md)
 
 **via Node.js**
 
